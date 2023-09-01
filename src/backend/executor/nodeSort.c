@@ -109,7 +109,6 @@ ExecSort(PlanState *pstate)
 		}
 		else if(plannode->numCols<150 && plannode->numCols<200){
 			Size_gt_onefifty_lt_twohundred++;
-			outfile.open("output.txt");
 			outfile = fopen("tabsize.txt", "a");
 			fprintf(outfile, "Size_gt_onefifty_lt_twohundred = %d\n",Size_gt_onefifty_lt_twohundred);
 			fclose(outfile);
