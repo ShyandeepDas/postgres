@@ -22,21 +22,21 @@
 #include "utils/tuplesort.h"
 
 #ifndef tabsizedbg
-#define
+#define tabsizedbg
 #include <stdio.h>
-uint64_t Size_lt_fifty=0;
-uint64_t Size_gt_fifty_lt_hundred=0;
-uint64_t Size_gt_hundred_lt_onefifty=0;
-uint64_t Size_gt_onefifty_lt_twohundred=0;
-uint64_t Size_gt_twohundred_lt_twofifty=0;
-uint64_t Size_gt_twofifty_lt_threehundred=0;
-uint64_t Size_gt_threehundred_lt_threefifty=0;
-uint64_t Size_gt_threefifty_lt_fourhundred=0;
-uint64_t Size_gt_fourhundred_lt_thousand=0;
-uint64_t Size_gt_thousand=0;
-uint64_t quicksorttype;
-uint64_t extmergesorttype;
-uint64_t nheapsorttype;
+int Size_lt_fifty=0;
+int Size_gt_fifty_lt_hundred=0;
+int Size_gt_hundred_lt_onefifty=0;
+int Size_gt_onefifty_lt_twohundred=0;
+int Size_gt_twohundred_lt_twofifty=0;
+int Size_gt_twofifty_lt_threehundred=0;
+int Size_gt_threehundred_lt_threefifty=0;
+int Size_gt_threefifty_lt_fourhundred=0;
+int Size_gt_fourhundred_lt_thousand=0;
+int Size_gt_thousand=0;
+int quicksorttype;
+int extmergesorttype;
+int nheapsorttype;
 FILE *outfile;
 #endif
 
