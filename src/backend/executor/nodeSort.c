@@ -21,23 +21,23 @@
 #include "miscadmin.h"
 #include "utils/tuplesort.h"
 
-#ifndef tabsizedbg
-#define tabsizedbg
-#include <stdio.h>
-int Size_lt_fifty=0;
-int Size_gt_fifty_lt_hundred=0;
-int Size_gt_hundred_lt_onefifty=0;
-int Size_gt_onefifty_lt_twohundred=0;
-int Size_gt_twohundred_lt_twofifty=0;
-int Size_gt_twofifty_lt_threehundred=0;
-int Size_gt_threehundred_lt_threefifty=0;
-int Size_gt_threefifty_lt_fourhundred=0;
-int Size_gt_fourhundred_lt_thousand=0;
-int Size_gt_thousand=0;
-int quicksorttype;
-int extmergesorttype;
-int nheapsorttype;
-#endif
+//#ifndef tabsizedbg
+//#define tabsizedbg
+//#include <stdio.h>
+//int Size_lt_fifty=0;
+//int Size_gt_fifty_lt_hundred=0;
+//int Size_gt_hundred_lt_onefifty=0;
+//int Size_gt_onefifty_lt_twohundred=0;
+//int Size_gt_twohundred_lt_twofifty=0;
+//int Size_gt_twofifty_lt_threehundred=0;
+//int Size_gt_threehundred_lt_threefifty=0;
+//int Size_gt_threefifty_lt_fourhundred=0;
+//int Size_gt_fourhundred_lt_thousand=0;
+//int Size_gt_thousand=0;
+//int quicksorttype;
+//int extmergesorttype;
+//int nheapsorttype;
+//#endif
 
 /* ----------------------------------------------------------------
  *		ExecSort
@@ -89,63 +89,63 @@ ExecSort(PlanState *pstate)
 				   "sorting subplan");
 
 		if(plannode->numCols<50){
-			Size_lt_fifty++;
+			//Size_lt_fifty++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_lt_fifty = %d\n",Size_lt_fifty);
+			fprintf(outfile, "Size_lt_fifty");
 			fclose(outfile);
 		}
-		else if(plannode->numCols<50 && plannode->numCols<100){
-			Size_gt_fifty_lt_hundred++;
+		else if(plannode->numCols>50 && plannode->numCols<100){
+			//Size_gt_fifty_lt_hundred++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_fifty_lt_hundred = %d\n",Size_gt_fifty_lt_hundred);
+			fprintf(outfile, "Size_gt_fifty_lt_hundred");
 			fclose(outfile);
 		}
-		else if(plannode->numCols<100 && plannode->numCols<150){
-			Size_gt_hundred_lt_onefifty++;
+		else if(plannode->numCols>100 && plannode->numCols<150){
+			//Size_gt_hundred_lt_onefifty++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_hundred_lt_onefifty = %d\n",Size_gt_hundred_lt_onefifty);
+			fprintf(outfile, "Size_gt_hundred_lt_onefifty");
 			fclose(outfile);
 		}
-		else if(plannode->numCols<150 && plannode->numCols<200){
-			Size_gt_onefifty_lt_twohundred++;
+		else if(plannode->numCols>150 && plannode->numCols<200){
+			//Size_gt_onefifty_lt_twohundred++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_onefifty_lt_twohundred = %d\n",Size_gt_onefifty_lt_twohundred);
+			fprintf(outfile, "Size_gt_onefifty_lt_twohundred");
 			fclose(outfile);
 		}
-		else if(plannode->numCols<200 && plannode->numCols<250){
-			Size_gt_twohundred_lt_twofifty++;
+		else if(plannode->numCols>200 && plannode->numCols<250){
+			//Size_gt_twohundred_lt_twofifty++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_twohundred_lt_twofifty = %d\n",Size_gt_twohundred_lt_twofifty);
+			fprintf(outfile, "Size_gt_twohundred_lt_twofifty");
 			fclose(outfile);
 		}
-		else if(plannode->numCols<250 && plannode->numCols<300){
-			Size_gt_twofifty_lt_threehundred++;
+		else if(plannode->numCols>250 && plannode->numCols<300){
+			//Size_gt_twofifty_lt_threehundred++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_twofifty_lt_threehundred = %d\n",Size_gt_twofifty_lt_threehundred);
+			fprintf(outfile, "Size_gt_twofifty_lt_threehundred");
 			fclose(outfile);
 		}
-		else if(plannode->numCols<300 && plannode->numCols<350){
-			Size_gt_threehundred_lt_threefifty++;
+		else if(plannode->numCols>300 && plannode->numCols<350){
+			//Size_gt_threehundred_lt_threefifty++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_threehundred_lt_threefifty = %d\n",Size_gt_threehundred_lt_threefifty);
+			fprintf(outfile, "Size_gt_threehundred_lt_threefifty");
 			fclose(outfile);
 		}
 		else if(plannode->numCols>350 && plannode->numCols<400){
-			Size_gt_threefifty_lt_fourhundred++;
+			//Size_gt_threefifty_lt_fourhundred++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_threefifty_lt_fourhundred = %d\n",Size_gt_threefifty_lt_fourhundred);
+			fprintf(outfile, "Size_gt_threefifty_lt_fourhundred");
 			fclose(outfile);
 		}
 		else if(plannode->numCols>400 && plannode->numCols<1000){
-			Size_gt_fourhundred_lt_thousand++;
+		//	Size_gt_fourhundred_lt_thousand++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_fourhundred_lt_thousand = %d\n",Size_gt_fourhundred_lt_thousand);
+			fprintf(outfile, "Size_gt_fourhundred_lt_thousand");
 			fclose(outfile);
 		}
 		else{
-			Size_gt_thousand++;
+		//	Size_gt_thousand++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_gt_thousand = %d\n",Size_gt_thousand);
+			fprintf(outfile, "Size_gt_thousand");
 			fclose(outfile);
 		}		
 
