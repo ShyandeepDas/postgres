@@ -91,8 +91,14 @@ ExecSort(PlanState *pstate)
 		if(plannode->numCols<50){
 			//Size_lt_fifty++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
-			fprintf(outfile, "Size_lt_fifty");
-			fclose(outfile);
+			if(outfile==NULL)
+			{
+			}
+			else{
+				fprintf(outfile, "Size_lt_fifty");
+				fclose(outfile);
+			}
+			
 		}
 			/*
 		else if(plannode->numCols>50 && plannode->numCols<100){
