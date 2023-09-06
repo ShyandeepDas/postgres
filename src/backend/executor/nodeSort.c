@@ -94,6 +94,7 @@ ExecSort(PlanState *pstate)
 			fprintf(outfile, "Size_lt_fifty");
 			fclose(outfile);
 		}
+			/*
 		else if(plannode->numCols>50 && plannode->numCols<100){
 			//Size_gt_fifty_lt_hundred++;
 			FILE *outfile = fopen("/home/ubuntu/tabsize.txt", "a");
@@ -148,7 +149,7 @@ ExecSort(PlanState *pstate)
 			fprintf(outfile, "Size_gt_thousand");
 			fclose(outfile);
 		}		
-
+		*/
 
 		/*
 		 * Want to scan subplan in the forward direction while creating the
