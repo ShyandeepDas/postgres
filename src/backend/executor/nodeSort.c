@@ -96,11 +96,8 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else{
 				fprintf(outfile, "Size_lt_fifty\n");
 				fclose(outfile);
-			}
-			
 		}
 			
 		else if(plannode->numCols>50 && plannode->numCols<100)
@@ -111,11 +108,8 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
 				fprintf(outfile, "Size_gt_fifty_lt_hundred\n");
 				fclose(outfile);
-			}
 			
 		}
 		else if(plannode->numCols>100 && plannode->numCols<150){
@@ -125,11 +119,8 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
 				fprintf(outfile, "Size_gt_hundred_lt_onefifty\n");
 				fclose(outfile);
-			}
 		}
 		else if(plannode->numCols>150 && plannode->numCols<200){
 			//Size_gt_onefifty_lt_twohundred++;
@@ -138,11 +129,9 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
+			
 				fprintf(outfile, "Size_gt_onefifty_lt_twohundred\n");
 				fclose(outfile);
-			}
 		}
 		else if(plannode->numCols>200 && plannode->numCols<250){
 			//Size_gt_twohundred_lt_twofifty++;
@@ -151,11 +140,10 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
+			
 				fprintf(outfile, "Size_gt_twohundred_lt_twofifty\n");
 				fclose(outfile);
-			}
+			
 		}
 		else if(plannode->numCols>250 && plannode->numCols<300){
 			//Size_gt_twofifty_lt_threehundred++;
@@ -164,11 +152,9 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
+			
 				fprintf(outfile, "Size_gt_twofifty_lt_threehundred\n");
 				fclose(outfile);
-			}
 		}
 		else if(plannode->numCols>300 && plannode->numCols<350){
 			//Size_gt_threehundred_lt_threefifty++;
@@ -177,11 +163,8 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
 				fprintf(outfile, "Size_gt_threehundred_lt_threefifty\n");
 				fclose(outfile);
-			}
 		}
 		else if(plannode->numCols>350 && plannode->numCols<400){
 			//Size_gt_threefifty_lt_fourhundred++;
@@ -190,11 +173,9 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
+			
 				fprintf(outfile, "Size_gt_threefifty_lt_fourhundred\n");
 				fclose(outfile);
-			}
 		}
 		else if(plannode->numCols>400 && plannode->numCols<1000){
 		//	Size_gt_fourhundred_lt_thousand++;
@@ -203,11 +184,8 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
 				fprintf(outfile, "Size_gt_fourhundred_lt_thousand\n");
 				fclose(outfile);
-			}
 		}
 		else{
 		//	Size_gt_thousand++;
@@ -216,11 +194,8 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-			else
-			{
 				fprintf(outfile, "Size_gt_thousand\n");
 				fclose(outfile);
-			}
 		}		
 
 		/*
