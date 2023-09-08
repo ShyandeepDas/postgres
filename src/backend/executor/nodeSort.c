@@ -287,17 +287,6 @@ ExecSort(PlanState *pstate)
 	return slot;
 }
 
-void printsize(Tuplesortstate *state)
-{
-		//print code
-	FILE *outfile = fopen("tabsize.txt", "a");
-			if(outfile==NULL)
-			{
-				FILE *outfile = fopen("tabsize.txt", "w");
-			}
-				fprintf(outfile, "Sort_size: %d\n",state->memtupsize);
-				fclose(outfile);
-}
 
 /* ----------------------------------------------------------------
  *		ExecInitSort
