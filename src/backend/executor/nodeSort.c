@@ -88,6 +88,7 @@ ExecSort(PlanState *pstate)
 		SO1_printf("ExecSort: %s\n",
 				   "sorting subplan");
 
+/*
 		if(plannode->numCols<50)
 		{
 			//Size_lt_fifty++;
@@ -196,7 +197,8 @@ ExecSort(PlanState *pstate)
 			}
 				fprintf(outfile, "Size_gt_thousand: %d\n",plannode->numCols);
 				fclose(outfile);
-		}		
+		}
+*/
 
 		/*
 		 * Want to scan subplan in the forward direction while creating the
@@ -280,6 +282,15 @@ ExecSort(PlanState *pstate)
 	(void) tuplesort_gettupleslot(tuplesortstate,
 								  ScanDirectionIsForward(dir),
 								  false, slot, NULL);
+
+	//print code
+	FILE *outfile = fopen("tabsize.txt", "a");
+			if(outfile==NULL)
+			{
+				FILE *outfile = fopen("tabsize.txt", "w");
+			}
+				fprintf(outfile, "Sort_size: %d\n",tuplesortstate->memtupsize);
+				fclose(outfile);
 	return slot;
 }
 
