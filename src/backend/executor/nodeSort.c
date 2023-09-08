@@ -289,7 +289,7 @@ ExecSort(PlanState *pstate)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-				fprintf(outfile, "Sort_size: %d\n",tuplesortstate->memtupsize);
+				fprintf(outfile, "Sort_size: %d\n",node->tuplesortstate->memtupsize);
 				fclose(outfile);
 	return slot;
 }
