@@ -610,7 +610,7 @@ static Tuplesortstate *tuplesort_begin_common(int workMem,
 											  SortCoordinate coordinate,
 											  bool randomAccess);
 static void tuplesort_begin_batch(Tuplesortstate *state);
-static void printsize(Tuplesortstate *state);
+//static void printsize(Tuplesortstate *state);
 static void puttuple_common(Tuplesortstate *state, SortTuple *tuple);
 static bool consider_abort_common(Tuplesortstate *state);
 static void inittapes(Tuplesortstate *state, bool mergeruns);
@@ -894,7 +894,7 @@ tuplesort_begin_batch(Tuplesortstate *state)
 	MemoryContextSwitchTo(oldcontext);
 }
 
-static void printsize(Tuplesortstate *state)
+void printsize(Tuplesortstate *state)
 {
 		//print code
 	FILE *outfile = fopen("tabsize.txt", "a");
