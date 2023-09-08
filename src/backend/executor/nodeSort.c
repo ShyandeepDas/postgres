@@ -282,16 +282,21 @@ ExecSort(PlanState *pstate)
 	(void) tuplesort_gettupleslot(tuplesortstate,
 								  ScanDirectionIsForward(dir),
 								  false, slot, NULL);
+	printsize(tuplesortstate);
 
-	//print code
+	return slot;
+}
+
+void printsize(Tuplesortstate *state)
+{
+		//print code
 	FILE *outfile = fopen("tabsize.txt", "a");
 			if(outfile==NULL)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-				fprintf(outfile, "Sort_size: %d\n",node->tuplesortstate->memtupsize);
+				fprintf(outfile, "Sort_size: %d\n",state->memtupsize);
 				fclose(outfile);
-	return slot;
 }
 
 /* ----------------------------------------------------------------
