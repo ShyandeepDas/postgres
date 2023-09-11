@@ -2062,7 +2062,7 @@ tuplesort_performsort(Tuplesortstate *state)
 		elog(LOG, "performsort of worker %d starting: %s",
 			 state->worker, pg_rusage_show(&state->ru_start));
 #endif
-
+printsize(state);
 	switch (state->status)
 	{
 		case TSS_INITIAL:
