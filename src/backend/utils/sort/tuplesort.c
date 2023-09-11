@@ -902,7 +902,7 @@ void printsize(Tuplesortstate *state)
 			{
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
-				fprintf(outfile, "memtupcount: %d bound: %d\n",state->memtupsize,state->bound);
+				fprintf(outfile, "memtupcount: %d, bound: %d, allowedMem: %d, availMem: %d, memtupsize: %d, tape_buffer_mem: %d \n",state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize,state->tape_buffer_mem);
 				fclose(outfile);
 }
 
