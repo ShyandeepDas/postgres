@@ -282,7 +282,7 @@ ExecSort(PlanState *pstate)
 	(void) tuplesort_gettupleslot(tuplesortstate,
 								  ScanDirectionIsForward(dir),
 								  false, slot, NULL);
-	printsize(tuplesortstate);
+	//printsize(tuplesortstate);
 
 	return slot;
 }
