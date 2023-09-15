@@ -2078,7 +2078,7 @@ tuplesort_performsort(Tuplesortstate *state)
 				{
 					FILE *outfile = fopen("tabsize.txt", "w");
 				}
-				fprintf("inside \"Just qsort 'em and we're done\" SEREAL TSS_INITIAL sorter\n");
+				fprintf(outfile, "inside \"Just qsort 'em and we're done\" SEREAL TSS_INITIAL sorter\n");
 				fprintf(outfile, "memtupcount: %d, bound: %d, allowedMem: %d, availMem: %d, memtupsize: %d\n",state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
 				fclose(outfile);
 
@@ -2098,7 +2098,7 @@ tuplesort_performsort(Tuplesortstate *state)
 				{
 					FILE *outfile = fopen("tabsize.txt", "w");
 				}
-				fprintf("inside \"think they are breaking the sort to each workers\" WORKER TSS_INITIAL sorter\n");
+				fprintf(outfile, "inside \"think they are breaking the sort to each workers\" WORKER TSS_INITIAL sorter\n");
 				fprintf(outfile, "memtupcount: %d, bound: %d, allowedMem: %d, availMem: %d, memtupsize: %d\n",state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
 				fclose(outfile);
 				
@@ -2118,7 +2118,7 @@ tuplesort_performsort(Tuplesortstate *state)
 				{
 					FILE *outfile = fopen("tabsize.txt", "w");
 				}
-				fprintf("inside \"Leader is merging the worker sorted sets\" LEADER TSS_INITIAL sorter\n");
+				fprintf(outfile, "inside \"Leader is merging the worker sorted sets\" LEADER TSS_INITIAL sorter\n");
 				fprintf(outfile, "memtupcount: %d, bound: %d, allowedMem: %d, availMem: %d, memtupsize: %d\n",state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
 				fclose(outfile);
 				
@@ -2144,7 +2144,7 @@ tuplesort_performsort(Tuplesortstate *state)
 				{
 					FILE *outfile = fopen("tabsize.txt", "w");
 				}
-				fprintf("inside \"The Bounded thing using a heap to eliminate excess tuples\" TSS_BOUNDED sorter\n");
+				fprintf(outfile, "inside \"The Bounded thing using a heap to eliminate excess tuples\" TSS_BOUNDED sorter\n");
 				fprintf(outfile, "memtupcount: %d, bound: %d, allowedMem: %d, availMem: %d, memtupsize: %d\n",state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
 				fclose(outfile);
 			
@@ -2170,7 +2170,7 @@ tuplesort_performsort(Tuplesortstate *state)
 				{
 					FILE *outfile = fopen("tabsize.txt", "w");
 				}
-				fprintf("inside \"Merging the tapes or something?\" TSS_BUILDRUNS sorter\n");
+				fprintf(outfile, "inside \"Merging the tapes or something?\" TSS_BUILDRUNS sorter\n");
 				fprintf(outfile, "memtupcount: %d, bound: %d, allowedMem: %d, availMem: %d, memtupsize: %d\n",state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
 				fclose(outfile);
 	
@@ -2195,7 +2195,7 @@ tuplesort_performsort(Tuplesortstate *state)
 				{
 					FILE *outfile = fopen("tabsize.txt", "w");
 				}
-				fprintf("inside \"Some special ifdef surrounded trace based sort?\" TRACE_SORT sorter\n");
+				fprintf(outfile, "inside \"Some special ifdef surrounded trace based sort?\" TRACE_SORT sorter\n");
 				fprintf(outfile, "memtupcount: %d, bound: %d, allowedMem: %d, availMem: %d, memtupsize: %d\n",state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
 				fclose(outfile);
 		if (state->status == TSS_FINALMERGE)
