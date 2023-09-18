@@ -193,7 +193,7 @@ typedef struct
  * 'nextfree' is valid when this chunk is in the free list.  When in use, the
  * slot holds a tuple.
  */
-#define SLAB_SLOT_SIZE 1024
+#define SLAB_SLOT_SIZE 10000000
 
 typedef union SlabSlot
 {
