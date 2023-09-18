@@ -193,7 +193,7 @@ typedef struct
  * 'nextfree' is valid when this chunk is in the free list.  When in use, the
  * slot holds a tuple.
  */
-#define SLAB_SLOT_SIZE 10000000
+#define SLAB_SLOT_SIZE 3200000
 
 typedef union SlabSlot
 {
@@ -903,7 +903,7 @@ void printsize(Tuplesortstate *state, char *str)
 				FILE *outfile = fopen("tabsize.txt", "w");
 			}
 				// fprintf(, str);
-				fprintf(outfile, "%s\n, memtupcount: %d, bound: %d, allowedMem: %lld, availMem: %lld, memtupsize: %d\n",str,state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
+				fprintf(outfile, "%s\nmemtupcount: %d, bound: %d, allowedMem: %lld, availMem: %lld, memtupsize: %d\n",str,state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
 				fclose(outfile);
 }
 
