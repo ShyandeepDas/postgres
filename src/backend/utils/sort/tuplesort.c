@@ -2072,8 +2072,10 @@ tuplesort_performsort(Tuplesortstate *state)
 			 * We were able to accumulate all the tuples within the allowed
 			 * amount of memory, or leader to take over worker tapes
 			 */
-			char str1[] =  "Just qsort 'em and we're done __SEREAL TSS_INITIAL__ sorter";
-			printsize(state, str1);
+			if (SERIAL(state))
+			{
+				char str1[] =  "Just qsort 'em and we're done __SEREAL TSS_INITIAL__ sorter";
+				printsize(state, str1);
 				/* Just qsort 'em and we're done */
 				tuplesort_sort_memtuples(state);
 				state->status = TSS_SORTEDINMEM;
