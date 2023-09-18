@@ -232,7 +232,7 @@ extern bool tuplesort_used_bound(Tuplesortstate *state);
 
 extern void tuplesort_puttupleslot(Tuplesortstate *state,
 								   TupleTableSlot *slot);
-extern void printsize(Tuplesortstate *state);
+extern void printsize(Tuplesortstate *state, char *str);
 extern void tuplesort_putheaptuple(Tuplesortstate *state, HeapTuple tup);
 extern void tuplesort_putindextuplevalues(Tuplesortstate *state,
 										  Relation rel, ItemPointer self,
