@@ -294,6 +294,14 @@ ST_SORT(ST_ELEMENT_TYPE * data, size_t n
 	int			r,
 				presorted;
 
+	FILE *outfile = fopen("tabsize.txt", "a");
+			if(outfile==NULL)
+			{
+				FILE *outfile = fopen("tabsize.txt", "w");
+			}
+				// fprintf(, str);
+				fprintf(outfile, "inside qsort kernel size_t n: %lld\n",n);
+				fclose(outfile);
 loop:
 	DO_CHECK_FOR_INTERRUPTS();
 	if (n < 7)
