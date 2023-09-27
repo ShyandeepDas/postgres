@@ -2074,8 +2074,6 @@ tuplesort_performsort(Tuplesortstate *state)
 			 */
 			if (SERIAL(state))
 			{
-				char str1[] =  "Just qsort 'em and we're done __SEREAL TSS_INITIAL__ sorter";
-				printsize(state, str1);
 				/* Just qsort 'em and we're done */
 				tuplesort_sort_memtuples(state);
 				state->status = TSS_SORTEDINMEM;
@@ -3603,15 +3601,61 @@ tuplesort_sort_memtuples(Tuplesortstate *state)
 
 	if (state->memtupcount > 1)
 	{
+		/*
+		 * Do we have the leading column's value or abbreviation in datum1,
+		 * and is there a specialization for its comparator?
+		 */
+		if (state->base.haveDatum1 && state->base.sortKeys)
+		{
+			if (state->base.sortKeys[0].comparator == ssup_datum_unsigned_cmp)
+			{
+				char str1[] =  "qsort uint";
+				printsize(state, str1);
+				
+				qsort_tuple_unsigned(state->memtuples,
+									 state->memtupcount,
+									 state);
+				return;
+			}
+#if SIZEOF_DATUM >= 8
+			else if (state->base.sortKeys[0].comparator == ssup_datum_signed_cmp)
+			{
+				char str1[] =  "some DATUMifdef qsort";
+				printsize(state, str1);
+				qsort_tuple_signed(state->memtuples,
+								   state->memtupcount,
+								   state);
+				return;
+			}
+#endif
+			else if (state->base.sortKeys[0].comparator == ssup_datum_int32_cmp)
+			{
+				char str1[] =  "qsort int32";
+				printsize(state, str1);
+				qsort_tuple_int32(state->memtuples,
+								  state->memtupcount,
+								  state);
+				return;
+			}
+		}
+
 		/* Can we use the single-key sort function? */
-		if (state->onlyKey != NULL)
+		if (state->base.onlyKey != NULL)
+		{
+			char str1[] =  "qsort sinlge-key ssup";
+			printsize(state, str1);
 			qsort_ssup(state->memtuples, state->memtupcount,
-					   state->onlyKey);
+					   state->base.onlyKey);
+		}
 		else
+		{
+			har str1[] =  "qsort sinlge-key nonssup";
+			printsize(state, str1);
 			qsort_tuple(state->memtuples,
 						state->memtupcount,
-						state->comparetup,
+						state->base.comparetup,
 						state);
+		}
 	}
 }
 
