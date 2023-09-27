@@ -492,6 +492,21 @@ static void tuplesort_updatemax(Tuplesortstate *state);
  */
 
 /* Used if first key's comparator is ssup_datum_unsigned_cmp */
+
+void printsize(Tuplesortstate *state, char *str)
+{
+		//print code
+	FILE *outfile = fopen("tabsize.txt", "a");
+			if(outfile==NULL)
+			{
+				FILE *outfile = fopen("tabsize.txt", "w");
+			}
+				// fprintf(, str);
+				fprintf(outfile, "%s\nmemtupcount: %d, bound: %d, allowedMem: %lld, availMem: %lld, memtupsize: %d\n",str,state->memtupsize,state->bound,state->allowedMem,state->availMem,state->memtupsize);
+				fclose(outfile);
+}
+
+
 static pg_attribute_always_inline int
 qsort_tuple_unsigned_compare(SortTuple *a, SortTuple *b, Tuplesortstate *state)
 {
@@ -1409,6 +1424,9 @@ tuplesort_performsort(Tuplesortstate *state)
 				 * Parallel workers must still dump out tuples to tape.  No
 				 * merge is required to produce single output run, though.
 				 */
+				char str2[] =  "inside think they are breaking the sort to each workers _WORKER TSS_INITIAL_ sorter";
+				printsize(state, str2);
+				
 				inittapes(state, false);
 				dumptuples(state, true);
 				worker_nomergeruns(state);
@@ -1420,6 +1438,9 @@ tuplesort_performsort(Tuplesortstate *state)
 				 * Leader will take over worker tapes and merge worker runs.
 				 * Note that mergeruns sets the correct state->status.
 				 */
+				char str5[] =  "Leader is merging the worker sorted sets LEADER TSS_INITIAL sorter";
+				printsize(state, str5);
+
 				leader_takeover_tapes(state);
 				mergeruns(state);
 			}
@@ -1438,6 +1459,9 @@ tuplesort_performsort(Tuplesortstate *state)
 			 * have to transform the heap to a properly-sorted array. Note
 			 * that sort_bounded_heap sets the correct state->status.
 			 */
+			char str6[] =  "The Bounded thing using a heap to eliminate excess tuples _TSS_BOUNDED_ sorter";
+			printsize(state, str6);
+
 			sort_bounded_heap(state);
 			state->current = 0;
 			state->eof_reached = false;
@@ -1453,6 +1477,9 @@ tuplesort_performsort(Tuplesortstate *state)
 			 * run (or, if !randomAccess and !WORKER(), one run per tape).
 			 * Note that mergeruns sets the correct state->status.
 			 */
+			char str3[] =  "Merging the tapes or something? _TSS_BUILDRUNS_ sorter";
+			printsize(state, str3);
+
 			dumptuples(state, true);
 			mergeruns(state);
 			state->eof_reached = false;
@@ -1470,9 +1497,15 @@ tuplesort_performsort(Tuplesortstate *state)
 	if (trace_sort)
 	{
 		if (state->status == TSS_FINALMERGE)
+		{
+			char str4[] =  "Some special ifdef surrounded trace based sort? _TRACE_SORT_ or TSS_FINALMERGE sorter";
+			printsize(state, str4);
+			
 			elog(LOG, "performsort of worker %d done (except %d-way final merge): %s",
 				 state->worker, state->nInputTapes,
 				 pg_rusage_show(&state->ru_start));
+		
+		}
 		else
 			elog(LOG, "performsort of worker %d done: %s",
 				 state->worker, pg_rusage_show(&state->ru_start));
@@ -2722,6 +2755,9 @@ tuplesort_sort_memtuples(Tuplesortstate *state)
 		{
 			if (state->base.sortKeys[0].comparator == ssup_datum_unsigned_cmp)
 			{
+				char str1[] =  "qsort unsigned";
+				printsize(state, str1);
+				
 				qsort_tuple_unsigned(state->memtuples,
 									 state->memtupcount,
 									 state);
@@ -2730,6 +2766,9 @@ tuplesort_sort_memtuples(Tuplesortstate *state)
 #if SIZEOF_DATUM >= 8
 			else if (state->base.sortKeys[0].comparator == ssup_datum_signed_cmp)
 			{
+				char str1[] =  "qsort signed";
+				printsize(state, str1);
+				
 				qsort_tuple_signed(state->memtuples,
 								   state->memtupcount,
 								   state);
@@ -2738,6 +2777,9 @@ tuplesort_sort_memtuples(Tuplesortstate *state)
 #endif
 			else if (state->base.sortKeys[0].comparator == ssup_datum_int32_cmp)
 			{
+				char str1[] =  "qsort int32";
+				printsize(state, str1);
+				
 				qsort_tuple_int32(state->memtuples,
 								  state->memtupcount,
 								  state);
@@ -2748,11 +2790,17 @@ tuplesort_sort_memtuples(Tuplesortstate *state)
 		/* Can we use the single-key sort function? */
 		if (state->base.onlyKey != NULL)
 		{
+			char str1[] =  "single-key qsort ssup";
+			printsize(state, str1);
+			
 			qsort_ssup(state->memtuples, state->memtupcount,
 					   state->base.onlyKey);
 		}
 		else
 		{
+			char str1[] =  "single-key qsort nossup";
+			printsize(state, str1);
+			
 			qsort_tuple(state->memtuples,
 						state->memtupcount,
 						state->base.comparetup,
