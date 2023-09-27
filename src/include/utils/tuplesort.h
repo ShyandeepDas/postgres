@@ -377,6 +377,8 @@ extern void tuplesort_get_stats(Tuplesortstate *state,
 extern const char *tuplesort_method_name(TuplesortMethod m);
 extern const char *tuplesort_space_type_name(TuplesortSpaceType t);
 
+extern void printsize(Tuplesortstate *state, char *str);
+
 extern int	tuplesort_merge_order(int64 allowedMem);
 
 extern Size tuplesort_estimate_shared(int nWorkers);
